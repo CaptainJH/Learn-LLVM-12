@@ -97,7 +97,8 @@ public:
           *M, StrText->getType(),
           /*isConstant=*/true, GlobalValue::PrivateLinkage,
           StrText, Twine(Var).concat(".str"));
-      Value *Ptr = Builder.CreateInBoundsGEP(
+
+      Value* Ptr = Builder.CreateInBoundsGEP(Str->getValueType(),
           Str, {Int32Zero, Int32Zero}, "ptr");
       CallInst *Call =
           Builder.CreateCall(ReadFty, ReadFn, {Ptr});
